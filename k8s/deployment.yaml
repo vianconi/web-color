@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webcolor
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webcolor
+  template:
+    metadata:
+      labels:
+        app: webcolor
+    spec:
+      containers:
+      - name: webcolor
+        image: vianconi/web-color-priv:blue
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: docker-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webcolor
+spec:
+  selector:
+    app: webcolor
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
+

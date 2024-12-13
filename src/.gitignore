@@ -11,6 +11,11 @@ webcolor
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+*.pyo
+*.git
+*.env
+
 
 # C extensions
 *.so
